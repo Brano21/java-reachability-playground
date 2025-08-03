@@ -14,12 +14,6 @@ jobs:
           java-version: '21'
           distribution: 'zulu'
           cache: maven
-
-      - name: RunSnyk to check for vulnerabilities
-        uses: snyk/actions/maven@master
-        continue-on-error: true
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         
       - name: Build with Maven cloud
         run:  mvn -B verify sonar:sonar -Dsonar.projectKey=java-reachability-playground -Dsonar.organization=java-reachabilityplayground -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$SONAR_TOKEN
